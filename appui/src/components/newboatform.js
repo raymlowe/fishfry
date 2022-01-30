@@ -28,6 +28,10 @@ export const NewboatForm = (data) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+
+        //should clear the text area here
+        event.target.reset();
+
         let saveNewBoatResponse
         //SUBMIT FORM CODE HERE
         (async () => {
@@ -55,8 +59,6 @@ export const NewboatForm = (data) => {
             }
         }
         )();
-
-        //should clear the text area here
     }
 
     //On change we want to update the form data hook
