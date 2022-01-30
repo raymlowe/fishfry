@@ -1,4 +1,4 @@
-import React, { useReducer} from 'react';
+import React, { useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
 import styled from 'styled-components';
@@ -28,20 +28,35 @@ export const NewboatForm = (data) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        let saveNewBoatResponse
         //SUBMIT FORM CODE HERE
         (async () => {
             const rawResponse = await fetch('/tourboats', {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(formData)
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
             });
-            const content = await rawResponse.json();
-            console.log("Compoeted POST")
-            console.log(content);
-          })();
+            saveNewBoatResponse = await rawResponse.json();
+            const newId = saveNewBoatResponse.newPageId
+            //On Response, we want to assign new boat to swim lane 1 (leftmost)
+            if(newId != undefined){
+                const secondRawResponse = await fetch('/boatlanes/'+newId+"/"+"1", {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                });
+                let boatLaneResponse = await secondRawResponse.json();
+                console.log("RESPONSE::" +boatLaneResponse)
+            }
+        }
+        )();
+
+        //should clear the text area here
     }
 
     //On change we want to update the form data hook
@@ -62,7 +77,7 @@ export const NewboatForm = (data) => {
                             <fieldset>
                                 <label>
                                     <p>Name</p>
-                                    <input name="name" onChange={handleChange}/>
+                                    <input name="name" onChange={handleChange} />
                                 </label>
                             </fieldset>
                             <button type="submit">Submit</button>

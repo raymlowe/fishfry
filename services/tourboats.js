@@ -32,7 +32,8 @@ async function getAllBoats() {
 
 /*
 *DAO for persisting a new boat object
-*expected json payload: {name: "Some Awesome Boat"}
+*expected json payload: {"name": "Some Awesome Boat"}
+*returns uuidv4 of newly generated boat
 */
 async function create(boat) {
   const newPageId = uuidv4(); //autogenerate ID for boat
@@ -45,7 +46,7 @@ async function create(boat) {
   if (result.length) {
     message = 'Boat created successfully';
   }
-  return { message };
+  return { newPageId };
 }
 
 /*
