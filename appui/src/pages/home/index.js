@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { homeService } from "../../services/homeService";
 import Dashboard from "../../components/dashboard";
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
 function Home() {
 
@@ -11,7 +13,6 @@ function Home() {
     homeService
       .getDashboard()
       .then(data => {
-        console.log(data)
         if (data != undefined) {
           setDashboardData(data);
         }
@@ -27,7 +28,12 @@ function Home() {
     <div>
       <h2>Home View</h2>
       <p>Current Ship Status.</p>
-      <Dashboard lanes={dashboardData} />
+      <Container>
+        <Row>
+          <Dashboard lanes={dashboardData} />
+        </Row>
+      </Container>
+
     </div>
   );
 }

@@ -1,10 +1,13 @@
-function Boats() {
-    return (
-      <div style={{ padding: 20 }}>
-        <h2>About Boats</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adip.</p>
-      </div>
-    );
-  }
+import NewboatForm from "../../components/newboatform";
 
-  export default Boats
+function Boats() {
+  return (
+    <div>
+      <h2>About Boats</h2>
+      <p>Manage Boats Here</p>
+      <NewboatForm />
+    </div>
+  );
+}
+
+export default Boats

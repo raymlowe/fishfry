@@ -10,5 +10,9 @@ npm install supertest --save-dev
 npm install cross-env --save-dev
 
 UI dependencies
+
+react router
 npm install react-bootstrap 
 npm install bootstrap
+
+styled components

@@ -1,5 +1,3 @@
-import { Children } from "react";
-
 // GET request to /api/page-types/
 async function getDashboard() {
 
@@ -15,7 +13,7 @@ async function getDashboard() {
         //get boat data
         const resBoat = await fetch("/tourboats", options);
         boatData = await resBoat.json();
-        //return boatData;
+
         //get swim lanes
         const resLane = await fetch("/swimlanes", options);
         swimLaneData = await resLane.json();
@@ -52,7 +50,6 @@ async function getDashboard() {
                 swimLaneChild = {...swimLaneChild, boatName: JSON.stringify(nameArray)}
                 array.push(swimLaneChild);
             })
-            console.log(array);
             return array;
         }
     } catch (error) {

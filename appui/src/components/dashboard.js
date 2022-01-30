@@ -10,8 +10,8 @@ export const Dashboard = (data) => {
     const laneName = swimLane.status;
     let boatNames = JSON.parse(swimLane.boatName)
     return (
-      <Col>
-        <div className="swimLane" key={laneName}>
+      <Col key={laneName}>
+        <div className="swimLane" >
           <h2 >{laneName}</h2>
           <ul>
             {boatNames.map(boatName => (
