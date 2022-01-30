@@ -9,3 +9,6 @@ npm install jest --save-dev
 npm install supertest --save-dev
 npm install cross-env --save-dev
 
+UI dependencies
+npm install react-bootstrap 
+npm install bootstrap
