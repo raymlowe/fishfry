@@ -5,7 +5,7 @@ const boatlanes = require('../services/boatlanes');
 /*
 GET All Boat Lane relatinships:
 This returns a JSON representation of all boat objects
-sample api endpoint: GET: http://localhost:3000/boatlanes/
+sample api endpoint: GET: http://localhost:3000/boatlanes
 */
 router.get('/', async function (req, res, next) {
     try {
