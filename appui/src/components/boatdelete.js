@@ -6,7 +6,14 @@ import { boatService } from '../services/boatService';
 const BoatDeleteStyled = styled.div`
 .removeBoatDiv {
     background-color:red;
-    max-width: 100px;
+    padding: 10px;
+    border: 1px #000000 solid;
+}
+.removeBoatDiv:hover {
+    background-color:#ed8787;
+    padding: 10px;
+    border: 1px #000000 solid;
+    cursor:pointer;
 }
 `
 
@@ -26,8 +33,6 @@ export const BoatDelete = (props) => {
                     window.location.reload();   //TODO: restructure to reload react component
                 }
             })
-
-
     }
     return (
         <BoatDeleteStyled>

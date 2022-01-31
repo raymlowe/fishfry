@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import Col from 'react-bootstrap/Col';
 import styled from 'styled-components';
+import { boatService } from '../services/boatService';
 
 const BoatActionStyled = styled.div`
 .wrapper {
@@ -11,11 +11,19 @@ const BoatActionStyled = styled.div`
 .wrapper fieldset {
     margin: 20px 0;
 }
+
+.actionButton{
+    padding: 10px;
+    border: 1px #ffffff solid;
+}
+
+.actionButton:hover {
+    background-color: #fefee1;
+    cursor: pointer;
+}
 `
 
 export const BoatAction = (props) => {
-    console.log(props);
-    // let boatData = (props.boatData)
     let laneData = (props.laneData)
     let boatId = props.boatID
     let boatAction;
@@ -23,14 +31,23 @@ export const BoatAction = (props) => {
         boatAction = laneData.data.map((lane, index) => {
             const handleUpdate = event => {
                 console.log("We Will Handle It: " + boatId + " for lane: " + lane.id)
+                //we assume a boat must always be in a lane and remove relationship frist -> check for response
+                boatService
+                    .removeTourboatSwimlane(boatId)
+                    .then(data => {
+                        if (data != undefined) {
+                            boatService.createTourboatSwimlane(boatId, lane.id)
+                            alert("Tourboat status updated")
+                            window.location.reload();   //TODO: restructure to reload react component
+                        }
+                    })
             }
             return (
                 <div key={lane.id}>
-                    <Col>
-                        <div className="actionButton" onClick={handleUpdate} key={lane.id}>
-                            Set State: {lane.status}
-                        </div>
-                    </Col>
+                    <div className="actionButton" onClick={handleUpdate} key={lane.id}>
+                        Set State: {lane.status}
+                    </div>
+
                 </div>
             )
         })

@@ -39,8 +39,7 @@ function Boats() {
 
   return (
     <div>
-      <h2>About Boats</h2>
-      <p>Manage Boats Here</p>
+      <h2>Manage Boats Here</h2>
       <NewboatForm />
       <ModifyExistingBoats boatData={tourBoatData} laneData={swimLaneData} />
     </div>

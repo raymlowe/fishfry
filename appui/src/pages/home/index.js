@@ -25,7 +25,7 @@ function Home() {
 
   return (
     <div>
-      <h2>Home View</h2>
+      <h2>Dashboard</h2>
       <p>Current Ship Status.</p>
       <Container>
         <Row>

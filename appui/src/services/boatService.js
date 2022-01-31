@@ -1,4 +1,5 @@
-// GET request to /api/page-types/
+//services for boat page
+
 async function getTourboats() {
 
     let boatData;
@@ -35,6 +36,64 @@ async function getSwimLanes() {
     }
 }
 
+/*
+input type: JSON.stringify
+createTourboats expects a JSON.stringifyed representation of the form data
+*/
+async function createTourboats(payload) {
+
+    let boatData;
+    const options = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: payload
+    };
+
+    try {
+        //get boat data
+        const resBoat = await fetch("/tourboats", options);
+        boatData = await resBoat.json();
+        return boatData;
+    } catch (error) {
+        console.log("Error in boatService createTourboats: ", error);
+        throw error;
+    }
+}
+
+async function createTourboatSwimlane(boatId, laneId) {
+
+    let createRelationshipResponse;
+    const options = {
+        method: 'POST'
+    };
+    try {
+        const resBoat = await fetch("/boatlanes/" + boatId + "/" + laneId, options);
+        createRelationshipResponse = await resBoat.json();
+        return createRelationshipResponse;
+    } catch (error) {
+        console.log("Error in boatService removeTourboatSwimlane: ", error);
+        throw error;
+    }
+}
+
+async function assignTourboatInitialLane(boatId) {
+    let createRelationshipResponse;
+    const options = {
+        method: 'POST'
+    };
+    try {
+        const resBoat = await fetch("/boatlanes/" + boatId + "/1", options);
+        createRelationshipResponse = await resBoat.json();
+        return createRelationshipResponse;
+    } catch (error) {
+        console.log("Error in boatService removeTourboatSwimlane: ", error);
+        throw error;
+    }
+}
+
 async function removeTourboatSwimlane(boatId) {
 
     let deleteRelationshipResponse;
@@ -42,7 +101,7 @@ async function removeTourboatSwimlane(boatId) {
         method: 'DELETE'
     };
     try {
-        const resBoat = await fetch("/boatlanes/"+boatId, options);
+        const resBoat = await fetch("/boatlanes/" + boatId, options);
         deleteRelationshipResponse = await resBoat.json();
         return deleteRelationshipResponse;
     } catch (error) {
@@ -58,7 +117,7 @@ async function removeTourboat(boatId) {
         method: 'DELETE'
     };
     try {
-        const resBoat = await fetch("/tourboats/"+boatId, options);
+        const resBoat = await fetch("/tourboats/" + boatId, options);
         deleteTourboat = await resBoat.json();
         return deleteTourboat;
     } catch (error) {
@@ -71,5 +130,8 @@ export const boatService = {
     getTourboats,
     getSwimLanes,
     removeTourboatSwimlane,
-    removeTourboat
+    removeTourboat,
+    createTourboatSwimlane,
+    createTourboats,
+    assignTourboatInitialLane
 };

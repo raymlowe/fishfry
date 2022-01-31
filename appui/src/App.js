@@ -7,9 +7,33 @@ import Home from "./pages/home"
 import Boats from "./pages/boats"
 
 const AppStyled = styled.div`
-.navLink{
-  padding:20px;
+nav{
+  background-color:#000000;
+  padding:10px;
+  margin-bottom:10px;
+  .navLink{
+    background-color:#ffffff;
+    padding:20px;
+  }
+  .navLink:hover{
+    background-color:#e4e7e6;
+  }
 }
+
+.main-navigation-links{
+  li{
+    list-style-type: none;
+    display: inline-block;
+    link{
+      border: 1px #ffffff solid;
+    }
+    link :hover{
+      cursor:pointer;
+      background-color:#e4e7e6;
+    }
+  }
+}
+
 `
 
 //We use <Link> instead of <a>. In React the <a> leads to the refreshing of the page
@@ -23,12 +47,18 @@ function App() {
     <AppStyled>
       <Router>
         <nav>
-          <Link to="/" className="navLink">
-            Home
-          </Link>
-          <Link to="/boats" className="navLink">
-            Boats
-          </Link>
+          <ul className='main-navigation-links'>
+            <li>
+              <Link to="/" className="navLink">
+                <span>Dashboard</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/boats" className="navLink">
+                <span>Boats</span>
+              </Link>
+            </li>
+          </ul>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />

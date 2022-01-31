@@ -10,6 +10,12 @@ import BoatDelete from './boatdelete';
 const ModifyBoatsStyled = styled.div`
 .wrapper {
     padding: 5px 20px;
+    background-color:#ffffff;
+    .boatOps{
+        padding: 10px 0;
+        background-color: #bec7d5;
+        margin-top:20px;
+    }
 }
 
 .wrapper fieldset {
