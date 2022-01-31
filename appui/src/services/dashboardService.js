@@ -58,6 +58,6 @@ async function getDashboard() {
     }
 }
 
-export const homeService = {
+export const dashboardService = {
     getDashboard
 };

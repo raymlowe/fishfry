@@ -35,7 +35,41 @@ async function getSwimLanes() {
     }
 }
 
+async function removeTourboatSwimlane(boatId) {
+
+    let deleteRelationshipResponse;
+    const options = {
+        method: 'DELETE'
+    };
+    try {
+        const resBoat = await fetch("/boatlanes/"+boatId, options);
+        deleteRelationshipResponse = await resBoat.json();
+        return deleteRelationshipResponse;
+    } catch (error) {
+        console.log("Error in boatService removeTourboatSwimlane: ", error);
+        throw error;
+    }
+}
+
+async function removeTourboat(boatId) {
+
+    let deleteTourboat;
+    const options = {
+        method: 'DELETE'
+    };
+    try {
+        const resBoat = await fetch("/tourboats/"+boatId, options);
+        deleteTourboat = await resBoat.json();
+        return deleteTourboat;
+    } catch (error) {
+        console.log("Error in boatService removeTourboat: ", error);
+        throw error;
+    }
+}
+
 export const boatService = {
     getTourboats,
-    getSwimLanes
+    getSwimLanes,
+    removeTourboatSwimlane,
+    removeTourboat
 };

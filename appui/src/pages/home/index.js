@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { homeService } from "../../services/homeService";
+import { dashboardService } from "../../services/dashboardService";
 import Dashboard from "../../components/dashboard";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -10,7 +10,7 @@ function Home() {
   const [dashboardData, setDashboardData] = useState([]);
 
   useEffect(() => {
-    homeService
+    dashboardService
       .getDashboard()
       .then(data => {
         if (data != undefined) {
