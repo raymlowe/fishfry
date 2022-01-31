@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/expressindex', indexRouter);
 app.use('/tourboats', boatsRouter);
 app.use('/swimlanes', laneRouter);
 app.use('/boatlanes', boatlaneRouter)
