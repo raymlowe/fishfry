@@ -16,7 +16,6 @@ function Home() {
         if (data != undefined) {
           setDashboardData(data);
         }
-
       })
       .catch((error) => {
         console.log("error in home index on getAllBoats: ", error);
