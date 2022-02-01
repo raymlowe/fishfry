@@ -53,7 +53,7 @@ async function getDashboard() {
             return array;
         }
     } catch (error) {
-        console.log("Error in homeService getDashboard: getting tour boats: ", error);
+        console.log("Error in homeService getDashboard: getting tour boats: ", +error);
         throw error;
     }
 }

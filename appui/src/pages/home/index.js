@@ -18,7 +18,7 @@ function Home() {
         }
       })
       .catch((error) => {
-        console.log("error in home index on getAllBoats: ", error);
+        console.log("error in home index on getAllBoats: ", +error);
         setIsError(true);
       });
   }, []);
