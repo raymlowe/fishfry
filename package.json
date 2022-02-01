@@ -1,10 +1,12 @@
 {
   "name": "fishfry",
   "version": "0.0.0",
+  "author": "Raymond Lowe <Raymond.Lowe@gov.bc.ca>",
   "private": true,
+  "main": "server.js",
   "scripts": {
     "build": "cd appui && npm i && npm run build",
-    "start": "node server.js",
+    "start": "node app.js",
     "test": "cross-env NODE_ENV=test jest"
   },
   "dependencies": {
