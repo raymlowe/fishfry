@@ -25,8 +25,8 @@ function Home() {
 
   return (
     <div>
-      <h2>Dashboard</h2>
-      <p>Current Ship Status.</p>
+      <h2>Fishfry Tours</h2>
+      <h3>Current boat status dashboard</h3>
       <Container>
         <Row>
           <Dashboard lanes={dashboardData} />

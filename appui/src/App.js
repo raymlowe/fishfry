@@ -55,7 +55,7 @@ function App() {
             </li>
             <li>
               <Link to="/boats" className="navLink">
-                <span>Boats</span>
+                <span>Boat Admin</span>
               </Link>
             </li>
           </ul>

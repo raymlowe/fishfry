@@ -3,6 +3,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import styled from 'styled-components';
+
+const BoatDashboardStyled = styled.div`
+  .swimLane{
+    background-color: #bec7d5;
+    margin-left:2px;
+    margin-right:2px;
+  }
+`
 
 export const Dashboard = (data) => {
 
@@ -26,13 +35,15 @@ export const Dashboard = (data) => {
   });
 
   return (
-    <div className="stock-container">
-      <Container>
-        <Row>
-          {listOfBoats}
-        </Row>
-      </Container>
-    </div>
+    <BoatDashboardStyled>
+      <div className="stock-container">
+        <Container>
+          <Row>
+            {listOfBoats}
+          </Row>
+        </Container>
+      </div>
+    </BoatDashboardStyled>
   );
 };
 
