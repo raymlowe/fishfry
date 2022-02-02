@@ -8,32 +8,34 @@ import Boats from "./pages/boats"
 
 const AppStyled = styled.div`
 nav{
-  background-color:#000000;
+  background-color:#0b85b5;
   padding:10px;
   margin-bottom:10px;
-  .navLink{
-    background-color:#ffffff;
-    padding:20px;
-  }
-  .navLink:hover{
-    background-color:#e4e7e6;
-  }
-}
+  font-weight:bold;
 
-.main-navigation-links{
-  li{
-    list-style-type: none;
-    display: inline-block;
-    link{
+  .navLink{
+    color:#ffffff;
+  }
+  a{
+    text-decoration:none;
+  }
+
+  .main-navigation-links{
+    li{
+      list-style-type: none;
+      padding: 10px;
+      display: inline-block;
       border: 1px #ffffff solid;
     }
-    link :hover{
+    li:hover{
+      a{
+        color:#000000;
+      }
       cursor:pointer;
-      background-color:#e4e7e6;
+      background-color:#ffffff;
     }
   }
 }
-
 `
 
 //We use <Link> instead of <a>. In React the <a> leads to the refreshing of the page

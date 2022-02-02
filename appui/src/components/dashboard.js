@@ -6,10 +6,15 @@ import Container from 'react-bootstrap/Container';
 import styled from 'styled-components';
 
 const BoatDashboardStyled = styled.div`
+  .lanes-container{
+    border-top: 1px #000000 solid;
+  }
   .swimLane{
     background-color: #bec7d5;
     margin-left:2px;
     margin-right:2px;
+    padding: 5px;
+    margin-top:10px;
   }
 `
 
@@ -36,7 +41,7 @@ export const Dashboard = (data) => {
 
   return (
     <BoatDashboardStyled>
-      <div className="stock-container">
+      <div className="lanes-container">
         <Container>
           <Row>
             {listOfBoats}

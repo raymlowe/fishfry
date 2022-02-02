@@ -2,6 +2,19 @@ import { useEffect, useState } from "react";
 import { boatService } from "../../services/boatService";
 import NewboatForm from "../../components/newboatform";
 import ModifyExistingBoats from "../../components/modifyexistingboats";
+import styled from 'styled-components';
+
+const BoatStyled = styled.div`
+  h2{
+    font-weight:bold;
+  }
+  h3{
+    font-weight:bold;
+  }
+  div.pageBanner{
+    padding-left:20px;
+  }
+`
 
 function Boats() {
 
@@ -38,11 +51,16 @@ function Boats() {
   }, []);
 
   return (
+    <BoatStyled>
     <div>
-      <h2>Manage Boats Here</h2>
+      <div className='pageBanner'>
+        <h2>Fishfry Tours</h2>
+        <h3>Boat Administration Screen</h3>
+      </div>
       <NewboatForm />
       <ModifyExistingBoats boatData={tourBoatData} laneData={swimLaneData} />
     </div>
+    </BoatStyled>
   );
 }
 

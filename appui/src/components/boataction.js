@@ -30,7 +30,6 @@ export const BoatAction = (props) => {
     if (laneData.data != undefined) {
         boatAction = laneData.data.map((lane, index) => {
             const handleUpdate = event => {
-                console.log("We Will Handle It: " + boatId + " for lane: " + lane.id)
                 //we assume a boat must always be in a lane and remove relationship frist -> check for response
                 boatService
                     .removeTourboatSwimlane(boatId)
@@ -47,7 +46,6 @@ export const BoatAction = (props) => {
                     <div className="actionButton" onClick={handleUpdate} key={lane.id}>
                         Set State: {lane.status}
                     </div>
-
                 </div>
             )
         })

@@ -1,21 +1,29 @@
 import React, { useReducer } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 import styled from 'styled-components';
 import { boatService } from '../services/boatService';
 
 const BoatAdminStyled = styled.div`
 
-.new-boat-form{
-    margin-top: 30px;
-    background-color: #bed5c2;
-    .wrapper {
-        padding: 5px 20px;
-        background-color: #dde9df;
-    }
-    .wrapper fieldset {
-        margin: 20px 0;
-    }
+.wrapper{
+    border: 1px #000000 solid;
+    margin-top:30px;
+    background-color: #dde9df;
+    padding:10px;
+}
+
+.newBoatNameInput{
+    width:100%;
+    min-height:40px;
+}
+
+.newBoatNameSubmit{
+    padding:10px;
+    margin-top:10px;
+    border-radius:5px;
 }
 `
 
@@ -63,22 +71,26 @@ export const NewboatForm = (data) => {
 
     return (
         <BoatAdminStyled>
+            <Container>
+            <Row>
             <Col>
-                <div className="new-boat-form">
-                    <h3>Deploy a new boat: Enter name below</h3>
-                    <div className="wrapper">
+                <div className="wrapper">
+                    <div className="section_heading">
+                        <h3>Add a new boat:</h3>
+                    </div>
+                    <div className="section_form">
                         <form onSubmit={handleSubmit}>
-                            <fieldset>
-                                <label>
-                                    <p>Name</p>
-                                    <input name="name" onChange={handleChange} />
-                                </label>
+                            <fieldset className='newBoatNameField'>
+                                <label><p>Enter name of new boat:</p></label>
+                                <input className='newBoatNameInput' name="name" onChange={handleChange} />
                             </fieldset>
-                            <button type="submit">Submit</button>
+                            <button className='newBoatNameSubmit' type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
             </Col>
+            </Row>
+            </Container>
         </BoatAdminStyled>
     );
 };

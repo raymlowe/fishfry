@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import styled, { ThemeConsumer } from 'styled-components';
+import styled from 'styled-components';
 import { boatService } from '../services/boatService';
 
 const BoatDeleteStyled = styled.div`

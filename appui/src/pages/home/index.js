@@ -3,6 +3,19 @@ import { dashboardService } from "../../services/dashboardService";
 import Dashboard from "../../components/dashboard";
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import styled from 'styled-components';
+
+const HomeStyled = styled.div`
+  h2{
+    font-weight:bold;
+  }
+  h3{
+    font-weight:bold;
+  }
+  div.pageBanner{
+    padding-left:20px;
+  }
+`
 
 function Home() {
 
@@ -24,16 +37,19 @@ function Home() {
   }, []);
 
   return (
+    <HomeStyled>
     <div>
-      <h2>Fishfry Tours</h2>
-      <h3>Current boat status dashboard</h3>
+      <div className='pageBanner'>
+        <h2>Fishfry Tours</h2>
+        <h3>Current boat status dashboard</h3>
+      </div>
       <Container>
         <Row>
           <Dashboard lanes={dashboardData} />
         </Row>
       </Container>
-
     </div>
+    </HomeStyled>
   );
 }
 
