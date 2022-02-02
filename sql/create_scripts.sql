@@ -19,6 +19,7 @@ CREATE TABLE boat_lane (
 	CONSTRAINT fk_join_swimlane_id FOREIGN KEY (lane_id) REFERENCES swimlane(id)
 );
 
+--Seeds:
 insert into swimlane values ('1', 'Docked');
 insert into swimlane values ('2', 'Outbound to Sea');
 insert into swimlane values ('3', 'Inbound to Harbor');
