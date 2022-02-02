@@ -56,6 +56,7 @@ export const ModifyExistingBoats = (props) => {
             <Row>
                 <Col>
                     <h3>Modify Existing Boat's States</h3>
+                    <p>(Boats ordered by name)</p>
                 </Col>
             </Row>
             {boatOperations}

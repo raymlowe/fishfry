@@ -22,7 +22,7 @@ DAO for returning all boats
 */
 async function getAllBoats() {
   const rows = await db.query(
-    'SELECT * FROM tourboat'
+    'SELECT * FROM tourboat ORDER BY name'
   );
   const data = helper.emptyOrRows(rows);
   return {

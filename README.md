@@ -19,6 +19,7 @@ npm install supertest --save-dev
 npm install cross-env --save-dev
 
 Postgres Database
+Using: https://node-postgres.com/
 See /sql for migration scripts / seeds
 *Important* You must seed the swimlanes
 
