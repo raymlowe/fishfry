@@ -45,18 +45,26 @@ it along with the middlware all on port 3000.
 # API Endpoints
 These are the endpoints of the express application:
 
-### Tourboat Operations
+## Tourboat Operations
+
 ### GET /tourboats/[ id ] - Returns the JSON for a boat object
+
 ### GET /tourboats - Returns the JSON for all boat objects
+
 ### POST /tourboats - Persists a new boat object via JSON payload
+
 ### DELETE /tourboats/[ id ] - Removes a tourboat by ID
 
-### Swimlane Operations
+## Swimlane Operations
+
 ### GET /swimlanes - Returns a JSON array of all Swimlane objects
 
-### Tourboat / Swimlane Relationship Operations
+## Tourboat / Swimlane Relationship Operations
+
 ### GET /boatlanes - Returns a JSON array of all boat/lane assignments
+
 ### POST /boatlanes/[boat ID]/[Lane ID] - Assigns a boat to a lane
+
 ### DELETE /boatlanes/[boat ID] - Deletes the boat
 
 
