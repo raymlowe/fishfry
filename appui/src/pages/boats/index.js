@@ -57,8 +57,8 @@ function Boats() {
         <h2>Fishfry Tours</h2>
         <h3>Boat Administration Screen</h3>
       </div>
-      <NewboatForm />
-      <ModifyExistingBoats boatData={tourBoatData} laneData={swimLaneData} />
+      <NewboatForm boatData={tourBoatData} setBoatData={setTourBoatData}/>
+      <ModifyExistingBoats boatData={tourBoatData} laneData={swimLaneData}/>
     </div>
     </BoatStyled>
   );

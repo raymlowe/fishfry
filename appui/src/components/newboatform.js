@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -36,7 +36,7 @@ const formReducer = (state, event) => {
     }
 }
 
-export const NewboatForm = (data) => {
+function NewboatForm({ boatData, setBoatData }) {
     //Hook to store the form data
     const [formData, setFormData] = useReducer(formReducer, {});
 
@@ -45,20 +45,21 @@ export const NewboatForm = (data) => {
         //should clear the text area here
         event.target.reset();
 
-        let saveNewBoatResponse
         //SUBMIT FORM CODE HERE
         const bodyPayload = JSON.stringify(formData);
-        console.log(bodyPayload)
         boatService.createTourboats(bodyPayload)
-        .then(data => {
-            if (data != undefined) {
-                console.log(data.newPageId);
-                let newBoatId = data.newPageId
-                boatService.assignTourboatInitialLane(newBoatId)
-                alert("Boat has been added")
-                window.location.reload();   //TODO: restructure to reload react component
-            }
-        })
+            .then(data => {
+                if (data != undefined) {
+                    let newBoatId = data.newPageId
+                    boatService.assignTourboatInitialLane(newBoatId)
+                    //update hook
+                    let dataBoatName = data.boat.name;
+                    let newElement = { "id": newBoatId, "name": dataBoatName }
+                    boatData.data.push(newElement)
+                    setBoatData({ "data": boatData.data });
+                    alert("Boat has been added");
+                }
+            })
     }
 
     //On change we want to update the form data hook
@@ -72,24 +73,24 @@ export const NewboatForm = (data) => {
     return (
         <BoatAdminStyled>
             <Container>
-            <Row>
-            <Col>
-                <div className="wrapper">
-                    <div className="section_heading">
-                        <h3>Add a new boat:</h3>
-                    </div>
-                    <div className="section_form">
-                        <form onSubmit={handleSubmit}>
-                            <fieldset className='newBoatNameField'>
-                                <label><p>Enter name of new boat:</p></label>
-                                <input className='newBoatNameInput' name="name" onChange={handleChange} />
-                            </fieldset>
-                            <button className='newBoatNameSubmit' type="submit">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </Col>
-            </Row>
+                <Row>
+                    <Col>
+                        <div className="wrapper">
+                            <div className="section_heading">
+                                <h3>Add a new boat:</h3>
+                            </div>
+                            <div className="section_form">
+                                <form onSubmit={handleSubmit}>
+                                    <fieldset className='newBoatNameField'>
+                                        <label><p>Enter name of new boat:</p></label>
+                                        <input className='newBoatNameInput' name="name" onChange={handleChange} />
+                                    </fieldset>
+                                    <button className='newBoatNameSubmit' type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
             </Container>
         </BoatAdminStyled>
     );

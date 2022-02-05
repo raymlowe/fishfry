@@ -46,7 +46,7 @@ async function create(boat) {
   if (result.length) {
     message = 'Boat created successfully';
   }
-  return { newPageId };
+  return { newPageId, boat};
 }
 
 /*

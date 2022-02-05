@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -24,12 +24,10 @@ const ModifyBoatsStyled = styled.div`
 }
 `
 
-export const ModifyExistingBoats = (props) => {
-    let boatData = (props.boatData)
-    let laneData = (props.laneData)
+export const ModifyExistingBoats = ({ boatData, laneData }) => {
 
     let boatOperations
-    if (boatData.data != undefined && laneData.data != undefined) {
+    if (boatData.data != undefined && laneData != undefined) {
         boatOperations = boatData.data.map((boat, index) => {
             return (
                 <div className="boatOps" key={boat.id}>
@@ -39,8 +37,8 @@ export const ModifyExistingBoats = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <BoatAction boatID={boat.id} laneData={laneData}/>
-                        <BoatDelete boatId={boat.id}/>
+                        <BoatAction boatID={boat.id} laneData={laneData} />
+                        <BoatDelete boatId={boat.id} />
                     </Row>
 
                 </div>
@@ -52,15 +50,15 @@ export const ModifyExistingBoats = (props) => {
     return (
         <ModifyBoatsStyled>
             <div className="wrapper">
-            <Container>
-            <Row>
-                <Col>
-                    <h3>Modify Existing Boat's States</h3>
-                    <p>(Boats ordered by name)</p>
-                </Col>
-            </Row>
-            {boatOperations}
-            </Container>
+                <Container>
+                    <Row>
+                        <Col>
+                            <h3>Modify Existing Boat's States</h3>
+                            <p>(Boats ordered by name. Newly created boats are appended to list)</p>
+                        </Col>
+                    </Row>
+                    {boatOperations}
+                </Container>
             </div>
         </ModifyBoatsStyled>
     );
