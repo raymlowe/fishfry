@@ -20,7 +20,7 @@ async function getTourboats() {
 
 async function getSwimLanes() {
 
-    let boatData;
+    let laneData;
     const options = {
         method: 'GET'
     };
@@ -28,10 +28,25 @@ async function getSwimLanes() {
     try {
         //get boat data
         const resBoat = await fetch("/swimlanes", options);
-        boatData = await resBoat.json();
-        return boatData;
+        laneData = await resBoat.json();
+        return laneData;
     } catch (error) {
         console.log("Error in boatService getSwimLanes: ", error);
+        throw error;
+    }
+}
+
+async function getBoatLanes(){
+    let boatLaneData;
+    const options = {
+        method: 'GET'
+    };
+    try{
+        const resBoatLane = await fetch("/boatlanes", options);
+        boatLaneData = await resBoatLane.json();
+        return boatLaneData;
+    }catch (error) {
+        console.log("Error in boatService getBoatLanes: ", error);
         throw error;
     }
 }
@@ -133,5 +148,6 @@ export const boatService = {
     removeTourboat,
     createTourboatSwimlane,
     createTourboats,
-    assignTourboatInitialLane
+    assignTourboatInitialLane,
+    getBoatLanes
 };

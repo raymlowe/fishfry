@@ -24,11 +24,24 @@ const ModifyBoatsStyled = styled.div`
 }
 `
 
-export const ModifyExistingBoats = ({ boatData, laneData }) => {
+function ModifyExistingBoats ({ boatData, laneData, boatLaneData, setBoatLane}) {
 
     let boatOperations
-    if (boatData.data != undefined && laneData != undefined) {
+    if (boatData.data != undefined && laneData != undefined && boatLaneData != undefined) {
         boatOperations = boatData.data.map((boat, index) => {
+            //We assume a boat just always belong to a lane:
+            //Get the selected lane ID
+            let currentlySelectedLane;
+            if(boatLaneData != ''){
+                for (var i=0; i < boatLaneData.data.length; i++) {
+                    let thisBoatId = boatLaneData.data[i].boat_id;
+                    if(thisBoatId == boat.id){
+                        //selected lane
+                        currentlySelectedLane = boatLaneData.data[i].lane_id
+                    }      
+                }
+            }
+
             return (
                 <div className="boatOps" key={boat.id}>
                     <Row>
@@ -37,7 +50,7 @@ export const ModifyExistingBoats = ({ boatData, laneData }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <BoatAction boatID={boat.id} laneData={laneData} />
+                        <BoatAction boatId={boat.id} laneData={laneData} selectedLaneId={currentlySelectedLane} setBoatLane={setBoatLane}/>
                         <BoatDelete boatId={boat.id} />
                     </Row>
 

@@ -21,6 +21,7 @@ function Boats() {
   const [isError, setIsError] = useState(null);
   const [tourBoatData, setTourBoatData] = useState([]);
   const [swimLaneData, setSwimLaneData] = useState([]);
+  const [boatLaneData, setBoatLaneData] = useState([]);
 
   useEffect(() => {
     boatService
@@ -50,6 +51,20 @@ function Boats() {
       });
   }, []);
 
+  useEffect(() => {
+    boatService
+      .getBoatLanes()
+      .then(data => {
+        if (data != undefined) {
+          setBoatLaneData(data);
+        }
+      })
+      .catch((error) => {
+        console.log("error in home index on getBoatLanes: ", error);
+        setIsError(true);
+      });
+  }, []);
+
   return (
     <BoatStyled>
     <div>
@@ -58,7 +73,7 @@ function Boats() {
         <h3>Boat Administration Screen</h3>
       </div>
       <NewboatForm boatData={tourBoatData} setBoatData={setTourBoatData}/>
-      <ModifyExistingBoats boatData={tourBoatData} laneData={swimLaneData}/>
+      <ModifyExistingBoats boatData={tourBoatData} laneData={swimLaneData} boatLaneData={boatLaneData} setBoatLane={setBoatLaneData}/>
     </div>
     </BoatStyled>
   );

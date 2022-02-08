@@ -17,15 +17,17 @@ const BoatActionStyled = styled.div`
     border: 1px #ffffff solid;
 }
 
+.Selected{
+    background-color:#bbbbbb;
+}
+
 .actionButton:hover {
     background-color: #fefee1;
     cursor: pointer;
 }
 `
 
-export const BoatAction = (props) => {
-    let laneData = (props.laneData)
-    let boatId = props.boatID
+function BoatAction({ boatId, laneData, selectedLaneId, setBoatLane }) {
     let boatAction;
     if (laneData.data != undefined) {
         boatAction = laneData.data.map((lane, index) => {
@@ -34,20 +36,39 @@ export const BoatAction = (props) => {
                 boatService
                     .removeTourboatSwimlane(boatId)
                     .then(data => {
-                        if (data != undefined) {
-                            boatService.createTourboatSwimlane(boatId, lane.id)
-                            alert("Tourboat status updated")
-                            window.location.reload();   //TODO: restructure to reload react component
-                        }
+                        boatService.createTourboatSwimlane(boatId, lane.id)
+                            //once the boatlane has been updated, refresh data
+                            .then(retBoatLaneData => {
+                                if (retBoatLaneData != undefined) {
+                                    boatService.getBoatLanes()
+                                        .then(refreshedBoatLane => {
+                                            if (refreshedBoatLane != undefined) {
+                                                setBoatLane(refreshedBoatLane);
+                                            }
+                                        })
+                                }
+                            })
+                        alert("Tourboat status updated")
                     })
             }
-            return (
-                <div key={lane.id}>
-                    <div className="actionButton" onClick={handleUpdate} key={lane.id}>
-                        Set State: {lane.status}
+
+            if (lane.id == selectedLaneId) {
+                return (
+                    <div key={lane.id}>
+                        <div className="actionButton Selected" onClick={handleUpdate} key={lane.id}>
+                            Set State: {lane.status}
+                        </div>
                     </div>
-                </div>
-            )
+                )
+            } else {
+                return (
+                    <div key={lane.id}>
+                        <div className="actionButton" onClick={handleUpdate} key={lane.id}>
+                            Set State: {lane.status}
+                        </div>
+                    </div>
+                )
+            }
         })
     }
 
