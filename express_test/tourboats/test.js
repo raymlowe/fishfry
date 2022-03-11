@@ -1,4 +1,4 @@
-const server = require('../../app');
+const server = require('../../server');
 const supertest = require('supertest');
 const { json } = require('express/lib/response');
 

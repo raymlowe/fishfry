@@ -4,7 +4,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const app = express();
+var app = express();
 const path = require("path");
 const morgan = require("morgan");
 
@@ -44,3 +44,5 @@ app.get('*', function(req, res) {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+module.exports = app;

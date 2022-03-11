@@ -1,8 +1,9 @@
-const server = require('../../app');
+const server = require('../../server');
 const supertest = require('supertest');
 
 const testBoatName = 'testboat'
 let testBoatId
+
 
 //Test creation of a new boat
 //We need to ensure that the boat is created by default
